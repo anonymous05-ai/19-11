@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chúc Mừng Ngày Quốc Tế Đàn Ông 19/11</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-dark-1: #0b132b;
+      --bg-dark-2: #1c2541;
+      --bg-dark-3: #3a506b;
+      --gold-primary: #d4af37;
+      --gold-light: #f3e5ab;
+      --gold-dark: #aa8220;
+      --env-front: #1e325c;
+      --env-side: #162647;
+      --env-bottom: #12203d;
+      --env-flap: #243b6b;
+      --card-bg: #fffdf9;
+      --text-main: #1c2541;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top right, var(--bg-dark-3), var(--bg-dark-2) 45%, var(--bg-dark-1) 100%);
+      overflow: hidden;
+      color: #fff;
+      position: relative;
+    }
+
+    /* Hiệu ứng hạt ánh sáng nền */
+    .bg-particles {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(2px 2px at 20% 30%, rgba(212, 175, 55, 0.35), transparent),
+        radial-gradient(2px 2px at 80% 20%, rgba(255, 255, 255, 0.25), transparent),
+        radial-gradient(3px 3px at 40% 80%, rgba(212, 175, 55, 0.25), transparent),
+        radial-gradient(2px 2px at 70% 75%, rgba(255, 255, 255, 0.2), transparent);
+      background-size: 350px 350px;
+      animation: floatBg 25s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes floatBg {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-350px); }
+    }
+
+    /* Canvas Confetti */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    /* ================= POPUP UI ================= */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 13, 28, 0.78);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+      padding: 20px;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .modal-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .modal-box {
+      background: linear-gradient(145deg, rgba(28, 37, 65, 0.95), rgba(15, 23, 46, 0.98));
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      border-radius: 20px;
+      padding: 36px 32px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 30px rgba(212, 175, 55, 0.15);
+      transform: translateY(0) scale(1);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .modal-overlay.hidden .modal-box {
+      transform: translateY(-30px) scale(0.92);
+    }
+
+    .modal-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .modal-box h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .modal-box p {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1.5px solid rgba(212, 175, 55, 0.4);
+      border-radius: 12px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .input-group input::placeholder {
+      color: #94a3b8;
+    }
+
+    .input-group input:focus {
+      border-color: var(--gold-primary);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+    }
+
+    .error-msg {
+      color: #f87171;
+      font-size: 0.82rem;
+      margin-top: 8px;
+      display: none;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      color: #0b132b;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-primary), var(--gold-dark));
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 10px 20px -5px rgba(212, 175, 55, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px -5px rgba(212, 175, 55, 0.55);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+
+    /* ================= SCENE & 3D ENVELOPE ================= */
+    .scene {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100vh;
+      perspective: 1400px;
+      opacity: 0;
+      transform: scale(0.7) translateY(60px);
+      transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+    }
+
+    .scene.visible {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      width: 360px;
+      height: 240px;
+      margin-top: 120px; /* Tạo không gian phía trên để thiệp trượt lên */
+      transform-style: preserve-3d;
+      transition: transform 0.8s ease;
+      cursor: pointer;
+    }
+
+    /* Đổ bóng dưới đáy phong bì */
+    .envelope-shadow {
+      position: absolute;
+      bottom: -28px;
+      left: 5%;
+      width: 90%;
+      height: 24px;
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.65) 0%, transparent 75%);
+      border-radius: 50%;
+      transition: transform 0.8s ease;
+    }
+
+    /* Thân sau phong bì */
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+      background: var(--env-bottom);
+      border-radius: 8px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    /* Tấm thiệp bên trong */
+    .letter-card {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 12px;
+      height: 215px;
+      background: var(--card-bg);
+      background-image: radial-gradient(#e5dec9 0.75px, transparent 0.75px);
+      background-size: 16px 16px;
+      border-radius: 10px;
+      padding: 22px 20px;
+      color: var(--text-main);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      border: 2px solid var(--gold-primary);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      z-index: 2;
+      transition: transform 1.1s cubic-bezier(0.34, 1.4, 0.64, 1), height 1s ease, box-shadow 1s ease;
+      overflow: hidden;
+    }
+
+    /* Viền chỉ vàng bên trong thiệp */
+    .letter-card::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      border-radius: 6px;
+      pointer-events: none;
+    }
+
+    .card-date {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.32rem;
+      font-weight: 700;
+      color: #0b132b;
+      margin: 6px 0;
+      line-height: 1.3;
+    }
+
+    .card-recipient {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-bottom: 8px;
+    }
+
+    .card-message {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #334155;
+      font-style: italic;
+    }
+
+    .card-footer {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold-dark);
+      letter-spacing: 0.5px;
+    }
+
+    /* Mặt trước phong bì (2 cánh bên + đáy) */
+    .envelope-front {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    /* Cánh trái & phải */
+    .envelope-front::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--env-side) 0%, var(--env-front) 100%);
+      clip-path: polygon(0 0, 52% 52%, 0 100%);
+    }
+
+    .envelope-front::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(225deg, var(--env-side) 0%, var(--env-front) 100%);
+      clip-path: polygon(100% 0, 48% 52%, 100% 100%);
+    }
+
+    /* Cánh đáy phong bì */
+    .envelope-bottom {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      background: linear-gradient(to top, var(--env-bottom), var(--env-front));
+      clip-path: polygon(0 100%, 50% 46%, 100% 100%);
+      border-radius: 0 0 8px 8px;
+      pointer-events: none;
+      filter: drop-shadow(0 -3px 6px rgba(0, 0, 0, 0.35));
+    }
+
+    /* Viền vàng trang trí trên nắp đáy */
+    .envelope-bottom::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-bottom: 2px solid rgba(212, 175, 55, 0.4);
+    }
+
+    /* Nắp trên phong bì (Xoay 3D) */
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 138px;
+      background: linear-gradient(180deg, var(--env-flap) 0%, #18294d 100%);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top center;
+      transform: rotateX(0deg);
+      transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s linear 0.4s;
+      z-index: 5;
+      border-top: 1px solid rgba(212, 175, 55, 0.5);
+      backface-visibility: visible;
+    }
+
+    /* Con dấu sáp vàng 19/11 */
+    .wax-seal {
+      position: absolute;
+      top: 102px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold-primary) 55%, var(--gold-dark));
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+      border: 2px solid #967018;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #3d2b05;
+      z-index: 6;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    /* ================= TRẠNG THÁI MỞ PHONG THƯ ================= */
+    .envelope-wrapper.open .wax-seal {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.3);
+      pointer-events: none;
+    }
+
+    .envelope-wrapper.open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1; /* Đưa nắp ra sau tấm thiệp khi mở */
+    }
+
+    .envelope-wrapper.open .letter-card {
+      transform: translateY(-165px) translateZ(30px);
+      height: 295px;
+      z-index: 4;
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Nút thao tác bên dưới */
+    .controls {
+      margin-top: 48px;
+      display: flex;
+      gap: 12px;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.6s ease 1.4s, transform 0.6s ease 1.4s;
+    }
+
+    .scene.visible .controls {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .btn-action {
+      padding: 10px 20px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      font-family: inherit;
+      color: var(--gold-light);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      border-radius: 999px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: all 0.25s ease;
+    }
+
+    .btn-action:hover {
+      background: rgba(212, 175, 55, 0.22);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive cho màn hình nhỏ */
+    @media (max-width: 420px) {
+      .envelope-wrapper {
+        width: 310px;
+        height: 210px;
+        margin-top: 140px;
+      }
+      .envelope-flap {
+        height: 120px;
+      }
+      .wax-seal {
+        top: 90px;
+        width: 48px;
+        height: 48px;
+        font-size: 0.78rem;
+      }
+      .letter-card {
+        height: 190px;
+        padding: 16px 14px;
+      }
+      .envelope-wrapper.open .letter-card {
+        transform: translateY(-175px) translateZ(30px);
+        height: 290px;
+      }
+      .card-title {
+        font-size: 1.15rem;
+      }
+      .card-message {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-particles"></div>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- POPUP NHẬP TÊN -->
+  <div class="modal-overlay" id="nameModal">
+    <div class="modal-box">
+      <span class="modal-badge">International Men's Day • 19/11</span>
+      <h2>Gửi Người Trụ Cột</h2>
+      <p>Vui lòng nhập tên của bạn (hoặc người nhận) để mở tấm thiệp đặc biệt dành riêng cho ngày hôm nay.</p>
+      <form id="nameForm">
+        <div class="input-group">
+          <input 
+            type="text" 
+            id="recipientInput" 
+            placeholder="Ví dụ: Anh Minh, Bố Hùng, Nguyễn Văn A..." 
+            autocomplete="off"
+            maxlength="40"
+          />
+          <div class="error-msg" id="errorMsg">Vui lòng nhập tên để tiếp tục nhé!</div>
+        </div>
+        <button type="submit" class="btn-submit">Nhận Thiệp Chúc Mừng ✨</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SÂN KHẤU PHONG THƯ 3D -->
+  <div class="scene" id="scene">
+    <div class="envelope-wrapper" id="envelope" title="Nhấn để đóng/mở thư">
+      <div class="envelope-shadow"></div>
+      <div class="envelope-back"></div>
+
+      <!-- Nội dung thiệp -->
+      <div class="letter-card">
+        <div>
+          <div class="card-date">19 Tháng 11 • Quốc Tế Đàn Ông</div>
+          <h1 class="card-title">Chúc mừng ngày 19/11 Quốc tế Đàn ông</h1>
+          <div class="card-recipient" id="displayRecipient">Gửi Anh,</div>
+        </div>
+        <p class="card-message">
+          “Hi vọng ngày hôm nay sẽ là một ngày đẹp đối với người trụ cột của gia đình. Chúc anh luôn vững vàng, bản lĩnh, dồi dào sức khỏe và trọn vẹn niềm vui!”
+        </p>
+        <div class="card-footer">★ Trân Trọng & Tự Hào ★</div>
+      </div>
+
+      <!-- Các lớp vỏ phong bì -->
+      <div class="envelope-front"></div>
+      <div class="envelope-bottom"></div>
+      <div class="envelope-flap"></div>
+      <div class="wax-seal">19/11</div>
+    </div>
+
+    <div class="controls">
+      <button class="btn-action" id="toggleEnvelopeBtn">Đóng / Mở Thiệp</button>
+      <button class="btn-action" id="resetBtn">Đổi Tên Khác</button>
+    </div>
+  </div>
+
+  <script>
+    const nameModal = document.getElementById('nameModal');
+    const nameForm = document.getElementById('nameForm');
+    const recipientInput = document.getElementById('recipientInput');
+    const errorMsg = document.getElementById('errorMsg');
+    const scene = document.getElementById('scene');
+    const envelope = document.getElementById('envelope');
+    const displayRecipient = document.getElementById('displayRecipient');
+    const toggleEnvelopeBtn = document.getElementById('toggleEnvelopeBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    // Tự động focus vào ô nhập tên khi tải trang
+    window.addEventListener('DOMContentLoaded', () => {
+      recipientInput.focus();
+    });
+
+    // Xử lý khi nhấn nút Xác nhận trên Popup
+    nameForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const rawName = recipientInput.value.trim();
+
+      if (!rawName) {
+        errorMsg.style.display = 'block';
+        recipientInput.focus();
+        return;
+      }
+
+      errorMsg.style.display = 'none';
+      displayRecipient.textContent = `Thân gửi ${rawName},`;
+
+      // 1. Ẩn Popup
+      nameModal.classList.add('hidden');
+
+      // 2. Hiện phong bì 3D bay lên
+      setTimeout(() => {
+        scene.classList.add('visible');
+      }, 300);
+
+      // 3. Tự động mở nắp phong bì 3D & trượt thiệp ra sau khi phong bì xuất hiện
+      setTimeout(() => {
+        envelope.classList.add('open');
+        launchConfetti();
+      }, 1250);
+    });
+
+    // Cho phép nhấn trực tiếp vào phong bì để đóng/mở
+    envelope.addEventListener('click', () => {
+      envelope.classList.toggle('open');
+      if (envelope.classList.contains('open')) {
+        launchConfetti();
+      }
+    });
+
+    toggleEnvelopeBtn.addEventListener('click', () => {
+      envelope.classList.toggle('open');
+      if (envelope.classList.contains('open')) {
+        launchConfetti();
+      }
+    });
+
+    // Nút đổi tên khác
+    resetBtn.addEventListener('click', () => {
+      envelope.classList.remove('open');
+      setTimeout(() => {
+        scene.classList.remove('visible');
+        nameModal.classList.remove('hidden');
+        recipientInput.value = '';
+        recipientInput.focus();
+      }, 500);
+    });
+
+    /* ================= HIỆU ỨNG PHÁO GIẤY (CONFETTI) ================= */
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationId = null;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function launchConfetti() {
+      const colors = ['#d4af37', '#f3e5ab', '#3b82f6', '#60a5fa', '#ffffff'];
+      for (let i = 0; i < 85; i++) {
+        particles.push({
+          x: canvas.width / 2 + (Math.random() - 0.5) * 160,
+          y: canvas.height / 2,
+          vx: (Math.random() - 0.5) * 12,
+          vy: (Math.random() - 1.2) * 12 - 2,
+          size: Math.random() * 7 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          vRot: (Math.random() - 0.5) * 10,
+          gravity: 0.25,
+          opacity: 1
+        });
+      }
+      if (!animationId) {
+        animateConfetti();
+      }
+    }
+
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p, index) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += p.gravity;
+        p.vx *= 0.99;
+        p.rotation += p.vRot;
+        p.opacity -= 0.008;
+
+        if (p.opacity <= 0) {
+          particles.splice(index, 1);
+          return;
+        }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.globalAlpha = p.opacity;
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+        ctx.restore();
+      });
+
+      if (particles.length > 0) {
+        animationId = requestAnimationFrame(animateConfetti);
+      } else {
+        animationId = null;
+      }
+    }
+  </script>
+</body>
+</html>
